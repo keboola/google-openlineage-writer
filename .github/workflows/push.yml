@@ -3,7 +3,7 @@ name: 'GitHub Actions'
     - push
 concurrency: 'ci-${{ github.ref }}'
 env:
-    APP_IMAGE: keboola-component
+    APP_IMAGE: keboola/google-openlineage-writer
     KBC_DEVELOPERPORTAL_VENDOR: keboola
     KBC_DEVELOPERPORTAL_APP: keboola.wr-google-data-catalog-openlineage-writer
     KBC_DEVELOPERPORTAL_USERNAME: keboola+wr_google_openlineage_writer
@@ -11,6 +11,14 @@ env:
     DOCKERHUB_USER: keboolabot
     DOCKERHUB_TOKEN: '${{ secrets.DOCKERHUB_TOKEN }}'
     KBC_STORAGE_TOKEN: '${{ secrets.KBC_STORAGE_TOKEN }}'
+    KBC_URL: 'https://connection.keboola.com'
+    KBC_TOKEN: '${{ secrets.KBC_TOKEN }}'
+
+    CLIENT_ID: '${{ secrets.CLIENT_ID }}'
+    CLIENT_SECRET: '${{ secrets.CLIENT_SECRET }}'
+    ACCESS_TOKEN: '${{ secrets.ACCESS_TOKEN }}'
+    REFRESH_TOKEN: '${{ secrets.REFRESH_TOKEN }}'
+
     KBC_TEST_PROJECT_URL: ''
     KBC_TEST_PROJECT_CONFIGS: ''
 jobs:
@@ -73,7 +81,15 @@ jobs:
                     tag_as_latest: true
             -
                 name: 'Run tests'
-                run: 'docker run ${{env.APP_IMAGE}} composer ci'
+                run: |
+                    docker run \
+                    -e KBC_URL \
+                    -e KBC_TOKEN \
+                    -e CLIENT_ID \
+                    -e CLIENT_SECRET \
+                    -e ACCESS_TOKEN \
+                    -e REFRESH_TOKEN \
+                    ${{env.APP_IMAGE}} composer ci
     tests-in-kbc:
         needs: build
         runs-on: ubuntu-latest
