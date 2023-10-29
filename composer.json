@@ -6,7 +6,7 @@
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.8",
         "keboola/google-client-bundle": "dev-adamvyborny-upgrade-php",
-        "keboola/openlineage-generator": "dev-init",
+        "keboola/openlineage-generator": "dev-adamvyborny-allow-to-specify-date-format",
         "keboola/php-component": "^9.0",
         "keboola/storage-api-client": "^14.11"
     },

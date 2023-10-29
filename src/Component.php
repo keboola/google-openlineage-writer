@@ -63,6 +63,7 @@ class Component extends BaseComponent
             $config->getOpenLineageEndpoint(),
             $config->getJobNameAsConfig(),
             true,
+            'Y-m-d\TH:i:s.000\Z',
         );
 
         try {
