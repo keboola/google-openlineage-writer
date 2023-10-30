@@ -1,18 +1,14 @@
-# my-component
+# Google OpenLineage Writer
 
-> Fill in description
-
-# Usage
-
-> fill in usage instructions
+> Writes jobs data into a Google Data Catalog via OpenLineage API integration
 
 ## Development
  
 Clone this repository and init the workspace with following command:
 
 ```
-git clone https://github.com/keboola/my-component
-cd my-component
+git clone https://github.com/keboola/google-openlineage-writer
+cd google-openlineage-writer
 docker-compose build
 docker-compose run --rm dev composer install --no-scripts
 ```
